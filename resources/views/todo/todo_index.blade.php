@@ -37,6 +37,12 @@
                                     </button>
                             </div>
                             <div class="col-md-4">
+                             {{-- we use this function as helper function to count
+                                    the remaining and complete task 
+                                    this helper function in helper folder 
+                                 --}}
+                                {{-- the function count_complete() i used it to count the status is 1 for completed --}}
+                                {{-- the function count_remaining() i used it to count the status is 0 for remaining --}}
                             <button class="btn btn-success rounded-pill"><span class="rounded-circle">{{count_complete()}}</span> Complete</button>
                             <button class="btn btn-danger rounded-pill"><span>{{count_remaining()}}</span> Remaining</button>
                             </div>
@@ -67,7 +73,7 @@
                                             </td>
                                         </tr>
                                         </tbody>
-                                        @include('todo.modal_add')
+                                      
                                         @include('todo.modal_edit')
                                         @include('todo.modal_delete')
                                     </table>
@@ -86,7 +92,7 @@
     </div>
 
     </div>
-
+  @include('todo.modal_add')
 
 {{--<script src="{{asset('js/todo.js')}}" ></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
