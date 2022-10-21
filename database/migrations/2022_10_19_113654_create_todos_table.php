@@ -18,6 +18,7 @@ class CreateTodosTable extends Migration
             $table->string('title');
             $table->text('notes');
             $table->date('date');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
