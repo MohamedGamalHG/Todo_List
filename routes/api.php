@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+Route::group(['middleware'=>'api','namespace'=>'Api'], function() {
+    Route::post('all-todo', 'ApiController@all_todo');
+
+    Route::group(['prefix'=>'admin'],function(){
+        Route::post('login','AuthController@login');
+        Route::post('logout','AuthController@logout')->middleware('AssignGuard:admin-api');
+    });
+    
 });

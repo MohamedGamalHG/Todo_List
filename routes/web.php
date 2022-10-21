@@ -21,7 +21,7 @@ Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware'=>'auth','namespace'=>'App\Http\Controllers\Todo\\'],function (){
+Route::group(['middleware'=>'auth','namespace'=>'Todo'],function (){
 
     Route::resource('todo','TodoListController');
     Route::post('check-status','TodoListController@Check_Status')->name('check-status');

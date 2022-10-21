@@ -45,28 +45,24 @@
                             <ul class="d-flex flex-column-reverse todo-list">
                                 @if(isset($todos))
                                 @foreach($todos as $todo)
-                           {{--     <li class="{{$todo->status == 1 ? "completed" : ""}}">
-                                    <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox">
-                                            {{$todo->title}}<i class="input-helper"></i></label> </div>
-                                    <span class="btn btn-danger">{{$todo->date}}</span>
-                                </li>
---}}
-
                                     <table class="table">
                                         </thead>
                                         <tbody>
                                         <tr class="row-cols-md-3">
-                                            <td class="{{$todo->status == 1 ? "completed" : ""}}"><input  class="ajax checkbox" ajax_id="{{$todo->id}}" type="checkbox"
+                                           <td class="{{$todo->status == 1 ? "completed" : ""}}">
+                                            <input  class="ajax checkbox" ajax_id="{{$todo->id}}" type="checkbox"
                                                     {{$todo->status == 1 ? "checked" : ""}}
-                                                    {{$todo->status == 1 ? "disabled" : ""}}>
-                                          {{--  <td class="{{$todo->status == 1 ? "completed" : ""}}"><input  class="ajax checkbox" ajax_id="{{$todo->id}}" type="checkbox"
-                                                    {{$todo->status == 1 ? "checked" : ""}}
-                                                    {{$todo->status == 1 ? "disabled" : ""}}>--}}
-                                                {{$todo->title}}
+                                                    {{$todo->status == 1 ? "disabled" : ""}}
+                                               >
+                                                    {{$todo->title}}
                                             </td>
-                                            <td><span class="btn btn-{{$todo->status == 1 ? "success" : "danger"}}"> {{$todo->date}} </span></td>
+                                            <td><span class="btn btn-{{$todo->status == 1 ? "success" : "danger"}}"> 
+                                                {{$todo->date}} </span></td>
                                             <td >
-                                                <button    {{$todo->status == 1 ? "disabled" : ""}} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$todo->id}}">Edit</button>
+                                                <button {{$todo->status == 1 ? "disabled" : ""}} type="button"
+                                                 class="btn btn-primary" data-bs-toggle="modal"
+                                                  data-bs-target="#modal_edit_{{$todo->id}}">Edit</button>
+
                                                 <button  type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$todo->id}}">Delete</button>
                                             </td>
                                         </tr>
@@ -79,22 +75,7 @@
                                     @endforeach
                                 @endif
 
-                                {{--
-                                 <li >
-                                  <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> For what reason would it be advisable for me to think. <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                              </li>
-                          <li>
-                                  <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> it be advisable for me to think about business content? <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                              </li>
-                              <li>
-                                  <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> Print Statements all <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                              </li>
-                              <li class="completed">
-                                  <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                              </li>
-                              <li>
-                                  <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                              </li>--}}
+                            
                             </ul>
                             {{$todos->links()}}
                         </div>
@@ -103,9 +84,6 @@
             </div>
         </div>
     </div>
-    <!-- Button trigger modal -->
-
-
 
     </div>
 
@@ -124,7 +102,6 @@
     $(document).on('click','.ajax',function (e) {
         //e.preventDefault();
         var ajax_id = $(this).attr('ajax_id');
-        //console.log(ajax_id);
         $.ajax({
             type: 'post',
             url: "{{route('check-status')}}",
@@ -133,8 +110,11 @@
                 'id': ajax_id  //$("input[name='id']").val()
             },
             success: function (data) {
-                if (data.status == true)
-                    $('#alertsave').show();
+                if (data.status == true){
+                   location.reload()
+                   // $('#alertsave').show();
+                    //$(this).attr('')
+                }
             },
             error: function (data) {
 
