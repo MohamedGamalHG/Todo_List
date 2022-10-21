@@ -8,4 +8,5 @@ interface TodoListRepositoryInterface
         public function store($request);
         public function update($request);
         public function delete($request);
+        public function Check_Status($request);
 }
